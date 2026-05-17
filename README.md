@@ -10,7 +10,7 @@ Incluye estructura en HTML, estilos en CSS y funcionalidades básicas en JavaScr
 El proyecto refleja un flujo de trabajo real con commits narrativos, Issues y despliegue en GitHub Pages.
 
 ## Captura de pantalla
-! (cap-tubalance.png)
+Adjunta en el repositorio bajo el nombre "cap-tubalance.png"
 
 ## URL Pública
 https://elypereanez01.github.io/ProyectoFinal_TuBalance/
