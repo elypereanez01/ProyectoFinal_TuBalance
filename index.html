@@ -9,42 +9,86 @@
 </head>
 <body>
 
-    <header class="main-header">
-    <nav class="nav-container">
-        
-        <ul class="nav-links">
-            <li><a href="#beneficios">Beneficios</a></li>
-            <li><a href="#faq">Preguntas</a></li>
-            <li><a href="#testimonios">Testimonios</a></li>
-        </ul>
-        <a href="#registro" class="btn-login">Acceder</a>
-    </nav>
+    <!-- 1. COMPONENTE: NAVBAR STICKY -->
+    <header class="tb-navbar">
+        <div class="tb-navbar-container">
+            <a href="#" class="tb-navbar-logo" aria-label="TuBalance - Ir al inicio">
+                Tu<span class="tb-navbar-logo--alt">Balance</span>
+            </a>
+
+            <button id="tbNavbarToggle" class="tb-navbar-toggle" aria-expanded="false" aria-controls="tbNavbarMenu" aria-label="Abrir menú de navegación">
+                <span class="tb-navbar-toggle-bar"></span>
+                <span class="tb-navbar-toggle-bar"></span>
+                <span class="tb-navbar-toggle-bar"></span>
+            </button>
+
+            <nav id="tbNavbarMenu" class="tb-navbar-menu">
+                <ul class="tb-navbar-links">
+                    <li><a href="#beneficios" class="tb-navbar-link">Beneficios</a></li>
+                    <li><a href="#faq" class="tb-navbar-link">Preguntas</a></li>
+                    <li><a href="#testimonios" class="tb-navbar-link">Testimonios</a></li>
+                </ul>
+                <div class="tb-navbar-actions">
+                    <a href="#registro" class="tb-navbar-btn">Acceder</a>
+                </div>
+            </nav>
+        </div>
     </header>
 
     <main>
+        <!-- 2. SECCIÓN HERO ORIGINAL RECOBRADA (Estructura, Textos e Imagen Principal) -->
         <section class="hero-modern">
-        <div class="hero-grid">
-        <div class="hero-text">
-            <h1>Domina tu dinero y alcanza tu libertad financiera con TuBalance.</h1>
-            <p class="hero-tagline">Tu libertad financiera comienza con claridad.</p>
-            <p class="hero-description">
-                Gestiona tus ingresos, optimiza ahorros y toma decisiones inteligentes con una interfaz intuitiva diseñada para darte el control total de tu futuro económico.
-            </p>
-            
-            <div class="hero-cta-wrapper">
-                <a href="#registro" class="btn-hero-main">¡Empieza a ahorrar hoy! &rarr;</a>
-                <span class="hero-cta-note">Únete gratis en menos de 2 minutos.</span>
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <h1>Domina tu dinero y alcanza tu libertad financiera con TuBalance.</h1>
+                    <p class="hero-tagline">Tu libertad financiera comienza con claridad.</p>
+                    <p class="hero-description">
+                        Gestiona tus ingresos, optimiza ahorros y toma decisiones inteligentes con una interfaz intuitiva diseñada para darte el control total de tu futuro económico.
+                    </p>
+                    
+                    <div class="hero-cta-wrapper">
+                        <a href="#registro" class="btn-hero-main">¡Empieza a ahorrar hoy! &rarr;</a>
+                        <span class="hero-cta-note">Únete gratis en menos de 2 minutos.</span>
+                    </div>
+                </div>
+                
+                <div class="hero-image-container">
+                    <img src="finanzas-img.jpg" alt="Camino hacia la libertad financiera" class="hero-img">
+                </div>
             </div>
-        </div>
-        
-        <div class="hero-image-container">
-            <img src="finanzas-img.jpg" alt="Camino hacia la libertad financiera" class="hero-img">
-        </div>
-        </div>
         </section>
 
+        <!-- 3. COMPONENTE: COUNTDOWN TIMER -->
+        <section class="tb-countdown" aria-labelledby="tb-countdown-title">
+            <div class="tb-countdown-container">
+                <h2 id="tb-countdown-title" class="tb-countdown-title">Esta oferta educativa expira en:</h2>
+                
+                <div id="tbCountdownTimer" class="tb-countdown-timer" aria-live="off">
+                    <div class="tb-countdown-box">
+                        <span id="tb-days" class="tb-countdown-value">00</span>
+                        <span class="tb-countdown-label">Días</span>
+                    </div>
+                    <div class="tb-countdown-box">
+                        <span id="tb-hours" class="tb-countdown-value">00</span>
+                        <span class="tb-countdown-label">Horas</span>
+                    </div>
+                    <div class="tb-countdown-box">
+                        <span id="tb-minutes" class="tb-countdown-value">00</span>
+                        <span class="tb-countdown-label">Min</span>
+                    </div>
+                    <div class="tb-countdown-box">
+                        <span id="tb-seconds" class="tb-countdown-value">00</span>
+                        <span class="tb-countdown-label">Seg</span>
+                    </div>
+                </div>
+
+                <div id="tbCountdownMessage" class="tb-countdown-message" role="status" aria-live="polite"></div>
+            </div>
+        </section>
+
+        <!-- 4. SECCIÓN DE BENEFICIOS (Original) -->
         <section id="beneficios" aria-labelledby="beneficios-title">
-            <h2 id="beneficios-title">Por qué elegir TuBalance</h2>
+            <h2 id="beneficios-title" style="text-align: center; margin-bottom: 40px;">Por qué elegir TuBalance</h2>
             <div class="grid">
                 <article class="card">
                     <h3>Visibilidad 360°</h3>
@@ -69,7 +113,8 @@
             </div>
         </section>
 
-        <section id="testimonios" aria-labelledby="testimonio-title" style="background: #fafafa;">
+        <!-- 5. SECCIÓN DE TESTIMONIOS (Original) -->
+        <section id="testimonios" aria-labelledby="testimonio-title" style="background: #fafafa; border-radius: 16px; margin: 40px auto;">
             <h2 id="testimonio-title">Lo que dicen nuestros usuarios</h2>
             <blockquote>
                 <p><i>"Antes de TuBalance, mis finanzas eran una 'caja negra'. Gracias a la categorización automática, identifiqué 'gastos hormiga' que ni siquiera notaba. En solo tres meses, logré completar mi fondo de emergencia sin sacrificar mi estilo de vida."</i></p>
@@ -81,121 +126,117 @@
             </blockquote>
         </section>
 
-        <section id="faq" class="faq-section">
-    <div class="faq-container">
-        <h2 class="faq-title">Preguntas Frecuentes</h2>
-        <p class="faq-subtitle">Todo lo que necesitas saber para empezar a dominar tus finanzas.</p>
+        <!-- 6. COMPONENTE: PREGUNTAS FRECUENTES (FAQ ACORDEÓN) -->
+        <section id="faq" class="tb-faq" aria-labelledby="tb-faq-title">
+            <div class="tb-faq-container">
+                <h2 id="tb-faq-title" class="tb-faq-main-title">Preguntas Frecuentes</h2>
+                <p class="tb-faq-subtitle">Todo lo que necesitas saber sobre TuBalance y tu salud financiera.</p>
 
-        <div class="accordion">
-            <div class="accordion-item">
-                <button class="accordion-header" aria-expanded="false">
-                    <span>¿Es TuBalance realmente gratuito?</span>
-                    <i class="arrow-icon"></i>
-                </button>
-                <div class="accordion-content">
-                    <div class="content-inner">
-                        <p>Sí, ofrecemos una versión gratuita robusta que incluye todas las funciones esenciales de gestión y ahorro. También contamos con planes premium para usuarios avanzados que buscan análisis predictivos más profundos.</p>
+                <div class="tb-faq-accordion">
+                    <div class="tb-faq-item">
+                        <h3>
+                            <button type="button" class="tb-faq-trigger" id="tb-faq-h1" aria-expanded="false" aria-controls="tb-faq-p1">
+                                <span class="tb-faq-question">¿Cómo protege TuBalance mis datos financieros?</span>
+                                <span class="tb-faq-icon" aria-hidden="true"></span>
+                            </button>
+                        </h3>
+                        <div id="tb-faq-p1" class="tb-faq-panel" role="region" aria-labelledby="tb-faq-h1" hidden>
+                            <div class="tb-faq-content">
+                                <p>Utilizamos encriptación de grado bancario (AES-256) y protocolos de transferencia segura SSL. Tus credenciales e información están protegidas bajo los más estrictos estándares de ciberseguridad industrial, garantizando que solo tú tengas acceso a tus balances.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tb-faq-item">
+                        <h3>
+                            <button type="button" class="tb-faq-trigger" id="tb-faq-h2" aria-expanded="false" aria-controls="tb-faq-p2">
+                                <span class="tb-faq-question">¿La versión gratuita tiene algún límite de tiempo?</span>
+                                <span class="tb-faq-icon" aria-hidden="true"></span>
+                            </button>
+                        </h3>
+                        <div id="tb-faq-p2" class="tb-faq-panel" role="region" aria-labelledby="tb-faq-h2" hidden>
+                            <div class="tb-faq-content">
+                                <p>No, nuestra versión esencial es gratuita para siempre. Con ella puedes registrar ingresos, gastos y conectar tus principales metas de ahorro. Ofrecemos herramientas avanzadas opcionales en planes premium, pero las funciones base no expiran nunca.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tb-faq-item">
+                        <h3>
+                            <button type="button" class="tb-faq-trigger" id="tb-faq-h3" aria-expanded="false" aria-controls="tb-faq-p3">
+                                <span class="tb-faq-question">¿Necesito conocimientos previos en economía o finanzas?</span>
+                                <span class="tb-faq-icon" aria-hidden="true"></span>
+                            </button>
+                        </h3>
+                        <div id="tb-faq-p3" class="tb-faq-panel" role="region" aria-labelledby="tb-faq-h3" hidden>
+                            <div class="tb-faq-content">
+                                <p>Absolutamente no. TuBalance está diseñado específicamente para ser intuitivo y educativo. Convertimos gráficos e indicadores complejos en consejos sencillos y lecturas visuales claras para que cualquiera pueda optimizar su dinero desde el primer día.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header" aria-expanded="false">
-                    <span>¿Cómo protegen mis datos financieros?</span>
-                    <i class="arrow-icon"></i>
-                </button>
-                <div class="accordion-content">
-                    <div class="content-inner">
-                        <p>Utilizamos encriptación de grado bancario (AES-256) y protocolos SSL para asegurar que tu información esté siempre protegida y sea privada.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header" aria-expanded="false">
-                    <span>¿Puedo conectar múltiples cuentas bancarias?</span>
-                    <i class="arrow-icon"></i>
-                </button>
-                <div class="accordion-content">
-                    <div class="content-inner">
-                        <p>¡Absolutamente! Puedes sincronizar todas tus cuentas nacionales e internacionales para tener una visión 360° de tu patrimonio en un solo panel.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header" aria-expanded="false">
-                    <span>¿Necesito conocimientos previos de finanzas?</span>
-                    <i class="arrow-icon"></i>
-                </button>
-                <div class="accordion-content">
-                    <div class="content-inner">
-                        <p>No. TuBalance está diseñado para ser intuitivo. Nosotros hacemos el trabajo pesado de analizar los números por ti, presentándote consejos claros y fáciles de seguir.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
         </section>
 
-        <section id="registro" class="capture-section">
-    <div class="container-small">
-        <h2>¿Listo para equilibrar tus finanzas?</h2>
-        <p class="lead-text">Únete a los miles de usuarios que ya han transformado su futuro con TuBalance. Regístrate en segundos.</p>
+        <!-- 7. COMPONENTE DE REGISTRO -->
+        <section id="registro" class="tb-register" aria-labelledby="registro-title">
+            <div class="tb-register-container">
+                <h2 id="registro-title" class="tb-register-title">¿Listo para equilibrar tus finanzas?</h2>
+                <p class="tb-register-subtitle">Únete a los miles de usuarios que ya han transformado su futuro con TuBalance. Regístrate en segundos.</p>
 
-        <form id="tuBalanceForm" novalidate>
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="nombre">Nombre completo</label>
-                    <input type="text" id="nombre" placeholder="Ej. Juan Pérez">
-                    <span class="error-msg">✕ ¡Hola! Por favor, dinos tu nombre para empezar.</span>
-                </div>
-                <div class="form-group">
-                    <label for="email">Correo electrónico</label>
-                    <input type="email" id="email" placeholder="juan@ejemplo.com">
-                    <span class="error-msg">✕ Necesitamos tu correo para enviarte tu plan.</span>
-                </div>
+                <form id="tuBalanceForm" class="tb-register-form" novalidate>
+                    <div class="tb-register-row">
+                        <div class="tb-register-group">
+                            <label for="nombre" class="tb-register-label">Nombre Completo</label>
+                            <input type="text" id="nombre" name="nombre" class="tb-register-input" placeholder="Ej.Juan Pérez" required>
+                            </div>
+                    
+
+                        <div class="tb-register-group">
+                            <label for="email" class="tb-register-label">Correo electrónico</label>
+                            <input type="email" id="email" name="email" class="tb-register-input" placeholder="juan@ejemplo.com" required>
+                        </div>
+                    </div>
+
+                    <div class="tb-register-group tb-register-group--full">
+                        <label for="objetivo" class="tb-register-label">Objetivo de ahorro principal</label>
+
+                        <div class="tb-register-select-wrapper">
+                            <select id="objetivo" name="objetivo" class="tb-register-select" required>
+                                <option value="casa">Comprar una casa</option>
+                                <option value="viaje">Viajar por el mundo</option>
+                                <option value="emergencia">Fondo de emergencia</option>
+                                <option value="jubilación">Jubilación temprana</option>
+                                <option value="otro">Otro...</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="tb-register-group tb-register-group--checkbox">
+                        <div class="tb-register-checkbox-wrapper">
+                            <input type="checkbox" id="terminos" name="terminos" class="tb-register-checkbox" required>
+                            <label for="terminos" class="tb-register-checkbox-label">Acepto los términos, condiciones y la política de privacidad de TuBalance.</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="tb-register-submit">¡Crear mi cuenta gratuita ahora!</button>
+                </form>
             </div>
-
-            <div class="form-group full-width">
-                <label for="objetivo">Objetivo de ahorro principal</label>
-                <select id="objetivo">
-                    <option value="" disabled selected>Selecciona una opción</option>
-                    <option value="casa">Comprar una casa</option>
-                    <option value="viaje">Viajar por el mundo</option>
-                    <option value="emergencia">Fondo de emergencia</option>
-                    <option value="jubilacion">Jubilación temprana</option>
-                    <option value="otro">Otro</option>
-                </select>
-                <span class="error-msg">✕ Cuéntanos qué quieres lograr para ayudarte mejor.</span>
-            </div>
-
-            <div class="form-group checkbox-group">
-                <input type="checkbox" id="terminos">
-                <label for="terminos">
-                    Acepto los <a href="#">términos y condiciones</a> y la política de privacidad de TuBalance.
-                </label>
-                <span class="error-msg">✕ Para protegerte, necesitamos que aceptes los términos.</span>
-            </div>
-
-            <button type="submit" class="btn-submit">¡Crear mi cuenta gratuita ahora!</button>
-        </form>
-    </div>
-</section>
+        </section>
     </main>
 
     <aside style="padding: 20px; text-align: center; font-size: 0.9em; color: #666;">
         <p>Certificados por estándares internacionales de seguridad financiera.</p>
     </aside>
 
-    <footer role="contentinfo">
+    <footer role="contentinfo" style="padding: 20px; text-align: center; border-top: 1px solid var(--border-color); background: var(--white);">
         <p>&copy; 2026 TuBalance Fintech. Todos los derechos reservados.</p>
         <nav aria-label="Menú legal">
-            <a href="">Privacidad</a> | <a href="">Términos</a>
+            <a href="" style="color: var(--text-muted); text-decoration: none;">Privacidad</a> | 
+            <a href="" style="color: var(--text-muted); text-decoration: none;">Términos</a>
         </nav>
     </footer>
 
     <script src="script.js"></script>
-
 </body>
 </html>
