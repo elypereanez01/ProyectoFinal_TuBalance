@@ -5,19 +5,25 @@
 html {
     scroll-behavior: smooth;
 }
+
 :root {
     /* Paleta de colores WCAG Compliant */
-    --primary-green: #2D8A5E;    /* Verde corporativo (Crecimiento) */
+    --primary-green: #2D8A5E;    
     --primary-hover: #236B49;
-    --accent-blue: #2A5298;     /* Azul confianza */
-    --bg-light: #F8FAFC;        /* Fondo gris muy claro */
-    --text-main: #1E293B;       /* Azul oscuro/Gris para legibilidad */
+    --accent-blue: #2A5298;     
+    --bg-light: #F8FAFC;        
+    --text-main: #1E293B;       
     --text-muted: #475569;
     --white: #FFFFFF;
     --border-color: #E2E8F0;
-    
-    /* Tipografía */
     --font-main: 'Open Sans', 'Roboto', sans-serif;
+    --radius-base: 12px;
+
+    /* Tokens de Soporte Funcional */
+    --tb-error-light: #FEE2E2;
+    --tb-error-text: #EF4444;
+    --tb-focus-ring: #3B82F6;
+    --tb-transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * {
@@ -35,59 +41,165 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* HEADER ESTILO FINTECH */
-.main-header {
-    background-color: #ffffff;
-    padding: 15px 0;
+/* Enfoque accesible global (WCAG AA) */
+a:focus-visible, 
+button:focus-visible, 
+input:focus-visible, 
+select:focus-visible {
+    outline: 3px solid var(--tb-focus-ring);
+    outline-offset: 2px;
+}
+
+h1, h2, h3 {
+    color: var(--accent-blue);
+    margin-top: 0;
+}
+
+section {
+    padding: 60px 16px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* =========================================
+   1. COMPONENTE: NAVBAR STICKY (tb-navbar)
+   ========================================= */
+.tb-navbar {
     position: sticky;
     top: 0;
     z-index: 1000;
-    border-bottom: 1px solid #f0f0f0;
+    background-color: var(--white);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 16px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    transition: var(--tb-transition-smooth);
 }
 
-.nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
+.tb-navbar-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
 }
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 700;
-    font-size: 1.2rem;
-    color: #1a1a1a;
+.tb-navbar-logo {
+    font-family: var(--font-main);
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--accent-blue);
+    text-decoration: none;
+    letter-spacing: -0.5px;
 }
 
-.nav-links {
+.tb-navbar-logo--alt {
+    color: var(--primary-green);
+}
+
+.tb-navbar-toggle {
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 26px;
+    height: 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1010;
+}
+
+.tb-navbar-toggle-bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--text-main);
+    border-radius: 2px;
+    transition: var(--tb-transition-smooth);
+}
+
+.tb-navbar-toggle[aria-expanded="true"] .tb-navbar-toggle-bar:nth-child(1) {
+    transform: translateY(7.5px) rotate(45deg);
+}
+
+.tb-navbar-toggle[aria-expanded="true"] .tb-navbar-toggle-bar:nth-child(2) {
+    opacity: 0;
+}
+
+.tb-navbar-toggle[aria-expanded="true"] .tb-navbar-toggle-bar:nth-child(3) {
+    transform: translateY(-7.5px) rotate(-45deg);
+}
+
+.tb-navbar-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--white);
+    border-bottom: 1px solid var(--border-color);
+    padding: 24px 16px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+    gap: 24px;
+}
+
+.tb-navbar-menu--open {
+    display: flex;
+}
+
+.tb-navbar-links {
     list-style: none;
-    gap: 30px;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
 }
 
-.nav-links a {
-    text-decoration: none;
-    color: #555;
-    font-weight: 500;
-    transition: color 0.3s;
-}
-
-.nav-links a:hover { color: #006b3f; }
-
-.btn-login {
-    background-color: #0f172a; /* Azul muy oscuro casi negro */
-    color: white;
-    padding: 8px 20px;
-    border-radius: 20px;
-    text-decoration: none;
+.tb-navbar-link {
+    font-family: var(--font-main);
+    font-size: 1.05rem;
     font-weight: 600;
+    color: var(--text-main);
+    text-decoration: none;
+    transition: color 0.2s ease;
 }
 
-/* HERO SECTION MODERNA */
+.tb-navbar-link:hover,
+.tb-navbar-link:focus {
+    color: var(--primary-green);
+}
+
+.tb-navbar-actions {
+    display: flex;
+    width: 100%;
+}
+
+.tb-navbar-btn {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    background-color: var(--accent-blue);
+    color: var(--white);
+    font-family: var(--font-main);
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 12px 24px;
+    border-radius: var(--radius-base);
+    text-decoration: none;
+    transition: var(--tb-transition-smooth);
+}
+
+.tb-navbar-btn:hover,
+.tb-navbar-btn:focus {
+    background-color: var(--text-main);
+    transform: translateY(-1px);
+}
+
+/* =========================================
+   2. HERO SECTION ORIGINAL RECOBRADO (Estilos)
+   ========================================= */
 .hero-modern {
     padding: 80px 20px;
     background-color: #ffffff;
@@ -130,6 +242,7 @@ body {
 }
 
 .btn-hero-main {
+    display: inline-block;
     background-color: #008556;
     color: white;
     padding: 18px 35px;
@@ -151,350 +264,376 @@ body {
     font-size: 0.9rem;
 }
 
-/* IMAGEN CON BORDES REDONDEADOS */
+/* Imagen con Bordes Redondeados (¡Rescatada!) */
 .hero-image-container .hero-img {
     width: 100%;
-    border-radius: 40px; /* Borde muy redondeado como en la imagen */
+    border-radius: 40px;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
 }
 
 /* =========================================
-   ACCESIBILIDAD Y ENFOQUE
+   3. COMPONENTE: COUNTDOWN TIMER (tb-countdown)
    ========================================= */
-h1, h2, h3 {
-    color: var(--accent-blue);
-    margin-top: 0;
+.tb-countdown {
+    background-color: var(--bg-light);
+    padding: 40px 16px;
+    text-align: center;
 }
 
-a:focus, button:focus, input:focus {
-    outline: 3px solid #60A5FA;
-    outline-offset: 2px;
+.tb-countdown-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: var(--white);
+    padding: 24px;
+    border-radius: var(--radius-base);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
+}
+
+.tb-countdown-title {
+    font-family: var(--font-main);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.tb-countdown-timer {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.tb-countdown-box {
+    background-color: var(--primary-green);
+    color: var(--white);
+    min-width: 70px;
+    padding: 12px 8px;
+    border-radius: var(--radius-base);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tb-countdown-box:nth-child(even) {
+    background-color: var(--accent-blue);
+}
+
+.tb-countdown-value {
+    font-family: var(--font-main);
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.tb-countdown-label {
+    font-family: var(--font-main);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    opacity: 0.9;
+    margin-top: 4px;
+}
+
+.tb-countdown-message {
+    font-family: var(--font-main);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-green);
+    margin-top: 10px;
+    display: none;
 }
 
 /* =========================================
-   LAYOUT RESPONSIVE
+   4. LAYOUT DE BENEFICIOS (Original)
    ========================================= */
-section {
-    padding: 60px 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
 .grid {
     display: flex;
     flex-wrap: wrap;
     gap: 24px;
 }
 
-/* Tarjetas de beneficios */
 .card {
     background: var(--white);
     padding: 32px;
     border-radius: 12px;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    flex: 1 1 calc(33.333% - 24px); /* Desktop */
+    flex: 1 1 calc(33.333% - 24px);
     min-width: 280px;
 }
 
 /* =========================================
-   BOTONES Y TRANSICIONES
+   5. COMPONENTE: ACORDEÓN FAQ (tb-faq)
    ========================================= */
-.cta-button {
-    display: inline-block;
-    background-color: var(--primary-green);
-    color: var(--white) !important;
-    padding: 14px 28px;
-    font-weight: 700;
-    text-decoration: none;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-    text-align: center;
-    font-size: 1.1rem;
+.tb-faq {
+    background-color: var(--white);
+    padding: 48px 16px;
 }
 
-.cta-button:hover {
-    background-color: var(--primary-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-}
-
-.cta-button:active {
-    transform: translateY(0);
-}
-
-/* SECCIÓN DE CAPTURA ESTILO IMAGEN */
-.capture-section {
-    background-color: #006b3f; /* Verde oscuro de la imagen */
-    color: #ffffff;
-    text-align: center;
-    padding: 60px 20px;
-}
-
-.container-small {
-    max-width: 800px;
+.tb-faq-container {
+    max-width: 768px;
     margin: 0 auto;
 }
 
-.capture-section h2 {
-    color: #ffffff;
-    font-size: 2.5rem;
-    margin-bottom: 10px;
+.tb-faq-main-title {
+    font-family: var(--font-main);
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--text-main);
+    text-align: center;
+    margin-bottom: 8px;
 }
 
-.lead-text {
-    font-size: 1.1rem;
-    margin-bottom: 40px;
-    opacity: 0.9;
+.tb-faq-subtitle {
+    font-family: var(--font-main);
+    font-size: 1rem;
+    color: var(--text-muted);
+    text-align: center;
+    margin-bottom: 32px;
 }
 
-/* Formulario */
-.form-row {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 20px;
-}
-
-.form-group {
-    flex: 1;
-    text-align: left;
-    margin-bottom: 25px;
+.tb-faq-accordion {
     display: flex;
     flex-direction: column;
+    gap: 12px;
 }
 
-.form-group label {
-    font-weight: 700;
-    margin-bottom: 8px;
-    font-size: 0.95rem;
-}
-
-.form-group input, 
-.form-group select {
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 12px;
-    padding: 15px;
-    color: #000000;
-    font-size: 1rem;
-}
-
-/* Estilo para el placeholder */
-.form-group input::placeholder {
-    color: rgba(255, 255, 255, 0.5);
-}
-
-/* Select con flecha blanca */
-.form-group select {
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 15px center;
-}
-
-/* Mensajes de error */
-.error-msg {
-    color: #ffb3b3;
-    font-size: 0.85rem;
-    font-weight: 600;
-    margin-top: 8px;
-    display: none; /* Se activa con JS */
-}
-
-/* Checkbox */
-.checkbox-group {
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 10px;
-}
-
-.checkbox-group input {
-    margin-top: 5px;
-    width: 18px;
-    height: 18px;
-}
-
-.checkbox-group label a {
-    color: #ffffff;
-    text-decoration: underline;
-}
-
-/* Botón Destacado */
-.btn-submit {
-    background-color: #ffffff;
-    color: #006b3f;
-    border: none;
-    padding: 20px 40px;
-    border-radius: 15px;
-    font-size: 1.2rem;
-    font-weight: 700;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 20px;
-    transition: transform 0.2s, background-color 0.2s;
-}
-
-.btn-submit:hover {
-    background-color: #f0f0f0;
-    transform: scale(1.02);
-}
-
-.faq-section {
-    background-color: #f8fafc;
-    padding: 80px 20px;
-    text-align: center;
-}
-
-.faq-title {
-    font-size: 2.5rem;
-    color: #0f172a;
-    margin-bottom: 10px;
-}
-
-.faq-subtitle {
-    color: #64748b;
-    margin-bottom: 50px;
-}
-
-.faq-container {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.accordion-item {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 16px;
-    margin-bottom: 16px;
+.tb-faq-item {
+    background-color: var(--bg-light);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-base);
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-.accordion-header {
+.tb-faq-item--active {
+    border-color: var(--primary-green);
+    background-color: var(--white);
+    box-shadow: 0 4px 12px rgba(45, 138, 94, 0.06);
+}
+
+.tb-faq-item h3 { margin: 0; }
+
+.tb-faq-trigger {
     width: 100%;
-    padding: 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background: none;
     border: none;
+    padding: 18px 20px;
     cursor: pointer;
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #0f172a;
     text-align: left;
+    outline: none;
 }
 
-/* Icono de flecha usando CSS puro */
-.arrow-icon {
-    width: 12px;
-    height: 12px;
-    border-right: 2px solid #2d8a5e;
-    border-bottom: 2px solid #2d8a5e;
-    transform: rotate(45deg);
-    transition: transform 0.3s ease;
+.tb-faq-question {
+    font-family: var(--font-main);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-main);
+    line-height: 1.4;
 }
 
-/* Estado activo */
-.accordion-item.active {
-    border-color: #2d8a5e;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+.tb-faq-trigger:hover .tb-faq-question {
+    color: var(--primary-green);
 }
 
-.accordion-item.active .arrow-icon {
-    transform: rotate(-135deg);
-    margin-top: 6px;
+.tb-faq-trigger:focus-visible {
+    outline: 3px solid var(--tb-focus-ring);
+    outline-offset: -3px;
 }
 
-/* Contenido colapsable */
-.accordion-content {
+.tb-faq-icon {
+    position: relative;
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+}
+
+.tb-faq-icon::before,
+.tb-faq-icon::after {
+    content: "";
+    position: absolute;
+    background-color: var(--text-main);
+    transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+.tb-faq-icon::before { top: 6px; left: 0; width: 14px; height: 2px; }
+.tb-faq-icon::after { top: 0; left: 6px; width: 2px; height: 14px; }
+
+.tb-faq-trigger[aria-expanded="true"] .tb-faq-icon::before { background-color: var(--primary-green); }
+.tb-faq-trigger[aria-expanded="true"] .tb-faq-icon::after { transform: rotate(90deg); opacity: 0; }
+
+.tb-faq-panel {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease-out;
+    transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.content-inner {
-    padding: 0 24px 24px 24px;
-    color: #475569;
-    font-size: 1rem;
-    line-height: 1.6;
-    border-top: 1px solid #f1f5f9;
-    padding-top: 20px;
+.tb-faq-panel:not([hidden]) { display: block; }
+
+.tb-faq-content {
+    padding: 0 20px 20px 20px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 16px;
 }
 
-/* Responsive */
-@media (max-width: 600px) {
-    .form-row {
-        flex-direction: column;
-        gap: 0;
-    }
+.tb-faq-content p {
+    font-family: var(--font-main);
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin: 0;
 }
 
 /* =========================================
-   MEDIA QUERIES (Breakpoints)
+   6. COMPONENTE: REGISTRO (tb-register) 
    ========================================= */
+.tb-register {
+    background-color: var(--primary-green);
+    color: var(--white);
+    padding: 60px 16px;
+}
 
-/* RESPONSIVE */
+.tb-register-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.tb-register-title {
+    color: var(--white);
+    font-family: var(--font-main);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.tb-register-subtitle {
+    font-size: 1rem;
+    color: var(--white);
+    opacity: 0.9;
+    margin-bottom: 32px;
+}
+
+.tb-register-row {
+    display: flex;
+    flex-direction: column;
+}
+
+.tb-register-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.tb-register-label {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+}
+
+.tb-register-input, 
+.tb-register-select {
+    width: 100%;
+    background-color: var(--white);
+    border: 2px solid transparent;
+    border-radius: var(--radius-base);
+    padding: 14px 16px;
+    font-family: var(--font-main);
+    font-size: 1rem;
+    color: var(--text-main);
+}
+
+.tb-register-input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+.tb-register-select-wrapper { position: relative; width: 100%; }
+.tb-register-select { appearance: none; -webkit-appearance: none; padding-right: 40px; }
+.tb-register-select-wrapper::after {
+    content: ""; position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+    border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 6px solid var(--text-muted);
+    pointer-events: none;
+}
+
+.tb-register-input--error, .tb-register-select--error {
+    border-color: var(--tb-error-text);
+    background-color: var(--tb-error-light);
+}
+
+.tb-register-error {
+    color: #FFD2D2;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: 6px;
+    display: none;
+}
+
+.tb-register-checkbox-wrapper { display: flex; align-items: flex-start; gap: 12px; }
+.tb-register-checkbox { width: 20px; height: 20px; margin-top: 2px; cursor: pointer; }
+.tb-register-checkbox-label { font-size: 0.95rem; }
+.tb-register-link { color: var(--white); text-decoration: underline; font-weight: 600; }
+
+.tb-register-submit {
+    width: 100%; background-color: var(--white); color: var(--primary-green);
+    border: none; padding: 16px 32px; border-radius: var(--radius-base);
+    font-size: 1.1rem; font-weight: 700; cursor: pointer; margin-top: 16px;
+    transition: var(--tb-transition-smooth);
+}
+.tb-register-submit:hover { background-color: var(--bg-light); transform: translateY(-2px); }
+
+/* Testimonios (Original) */
+blockquote {
+    border-left: 4px solid var(--primary-green); padding: 20px 30px; margin: 20px 0;
+    background: var(--white); font-style: italic; border-radius: 0 8px 8px 0;
+}
+cite { display: block; margin-top: 10px; font-weight: bold; font-style: normal; color: var(--accent-blue); }
+
+/* =========================================
+   MEDIA QUERIES (Estrategia Responsiva)
+   ========================================= */
 @media (max-width: 968px) {
     .hero-grid { grid-template-columns: 1fr; text-align: center; }
     .hero-text h1 { font-size: 2.5rem; }
-    .hero-cta-wrapper { flex-direction: column; }
-    .nav-links { display: none; } /* Ocultar menú en móvil para simplicidad */
+    .hero-cta-wrapper { flex-direction: column; gap: 10px; }
 }
 
-/* Desktop & Large Screens (> 1024px) */
+@media (min-width: 480px) {
+    .tb-countdown-container { padding: 32px; }
+    .tb-countdown-timer { gap: 20px; }
+    .tb-countdown-box { min-width: 90px; padding: 16px 12px; }
+    .tb-countdown-value { font-size: 2.5rem; }
+}
+
+@media (min-width: 768px) {
+    .tb-navbar { padding: 16px 24px; }
+    .tb-navbar-toggle { display: none; }
+    .tb-navbar-menu {
+        display: flex; position: static; flex-direction: row; align-items: center;
+        width: auto; padding: 0; box-shadow: none; border: none; gap: 40px;
+    }
+    .tb-navbar-links { flex-direction: row; gap: 32px; }
+    .tb-navbar-actions { width: auto; }
+    .tb-navbar-btn { width: auto; padding: 10px 24px; }
+
+    .tb-faq-main-title { font-size: 2.2rem; }
+    .tb-faq-trigger { padding: 22px 24px; }
+    .tb-faq-question { font-size: 1.1rem; }
+
+    .tb-register { padding: 60px 24px; }
+    .tb-register-title { font-size: 2.4rem; }
+    .tb-register-row { flex-direction: row; gap: 20px; }
+    .tb-register-group { flex: 1; }
+
+    .card { flex: 1 1 calc(50% - 24px); }
+}
+
 @media (min-width: 1024px) {
-    h1 { font-size: 3rem; }
-    h2 { font-size: 2.2rem; }
-}
-
-/* Tablet (768px a 1023px) */
-@media (max-width: 1023px) {
-    .card {
-        flex: 1 1 calc(50% - 24px);
-    }
-    h1 { font-size: 2.5rem; }
-}
-
-/* Móvil (< 767px) */
-@media (max-width: 767px) {
-    section {
-        padding: 40px 15px;
-    }
-    
-    .card {
-        flex: 1 1 100%;
-    }
-
-    h1 { font-size: 2rem; }
-    
-    .cta-button {
-        width: 100%; /* Botón ancho completo en móvil */
-    }
-
-    #registro {
-        padding: 24px;
-        margin: 20px;
-    }
-}
-
-/* =========================================
-   ESTILOS DE TESTIMONIOS
-   ========================================= */
-blockquote {
-    border-left: 4px solid var(--primary-green);
-    padding: 20px 30px;
-    margin: 20px 0;
-    background: var(--white);
-    font-style: italic;
-    border-radius: 0 8px 8px 0;
-}
-
-cite {
-    display: block;
-    margin-top: 10px;
-    font-weight: bold;
-    font-style: normal;
-    color: var(--accent-blue);
+    .card { flex: 1 1 calc(33.333% - 24px); }
 }
