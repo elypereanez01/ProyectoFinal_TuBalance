@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TuBalance - Panel de Control</title>
+    <!-- Tus hojas de estilo -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard_styles.css">
+</head>
+<body class="dashboard-body">
+
+    <!-- Contenedor principal que unifica y centra todo el diseño -->
+    <div class="dashboard-wrapper">
+        
+        <header class="dashboard-hero">
+            <div class="dashboard-hero-container">
+                <h1 id="dbWelcomeTitle" class="welcome-highlight">¡Preparando tu entorno...!</h1>
+                <p class="dashboard-subtitle">Tu camino hacia la libertad financiera ha comenzado con éxito.</p>
+            </div>
+        </header>
+
+        <!-- Separador visual para darle más elegancia -->
+        <hr class="dashboard-separator">
+
+        <main class="dashboard-content-section">
+            <h3 class="dashboard-section-title">Tu Plan de Ahorro Personalizado</h3>
+            <p class="dashboard-subtitle">Analizando tus metas según el objetivo seleccionado...</p>
+
+            <!-- Rejilla de tarjetas (Grid) -->
+            <div class="dashboard-grid">
+                <div class="db-card">
+                    <h4>📊 Presupuesto</h4>
+                    <p>Configuración inicial en progreso. Diseñando tu regla de distribución de ingresos mensual.</p>
+                </div>
+                
+                <div class="db-card">
+                    <h4>🔍 Gastos Hormiga</h4>
+                    <p>Escáner de fugas de dinero listo para activarse. Conéctalo con tus registros diarios.</p>
+                </div>
+                
+                <div class="db-card">
+                    <h4>🎯 Meta de Ahorro Activa</h4>
+                    <p id="dbObjetivoText" class="db-target-value">Cargando...</p>
+                </div>
+            </div>
+            
+            <!-- Zona del botón de cierre de sesión -->
+            <div class="dashboard-actions">
+                <a href="index.html" id="btnLogout" class="btn-logout-dashboard">Cerrar Sesión</a>
+            </div>
+        </main>
+
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const STORAGE_KEYS = {
+                nombre: 'lp_tubalance_nombre',
+                objetivo: 'lp_tubalance_objetivo',
+                convertido: 'lp_tubalance_convertido'
+            };
+
+            const nombreCapturado = localStorage.getItem(STORAGE_KEYS.nombre);
+            const objetivoCapturado = localStorage.getItem(STORAGE_KEYS.objetivo);
+            const yaConvertido = localStorage.getItem(STORAGE_KEYS.convertido);
+
+            // Control de Seguridad
+            if (yaConvertido !== 'true' || !nombreCapturado) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            // Renderizar nombre
+            const welcomeTitle = document.getElementById('dbWelcomeTitle');
+            if (welcomeTitle) {
+                welcomeTitle.textContent = `¡Bienvenido, ${nombreCapturado}!`;
+            }
+
+            // Renderizar objetivo
+            const objetivoText = document.getElementById('dbObjetivoText');
+            if (objetivoText && objetivoCapturado) {
+                const mapaObjetivos = {
+                    casa: '🏠 Comprar tu casa propia',
+                    viaje: '✈️ Viajar por el mundo',
+                    emergencia: '🛡️ Crear tu Fondo de Emergencia',
+                    jubilacion: '🌅 Lograr tu Jubilación Temprana',
+                    otro: '🎯 Alcanzar tu meta financiera personalizada'
+                };
+                
+                objetivoText.textContent = mapaObjetivos[objetivoCapturado] || '🎯 Mi Meta Activa';
+            }
+
+            // Lógica de Redirección y Limpieza al Cerrar Sesión
+            const btnLogout = document.getElementById('btnLogout');
+            if (btnLogout) {
+                btnLogout.addEventListener('click', () => {
+                    localStorage.removeItem(STORAGE_KEYS.convertido);
+                    localStorage.removeItem(STORAGE_KEYS.nombre);
+                    localStorage.removeItem(STORAGE_KEYS.objetivo);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

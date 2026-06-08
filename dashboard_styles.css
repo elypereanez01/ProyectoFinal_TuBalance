@@ -1,0 +1,153 @@
+/* =========================================================================
+   ESTILOS GENERALES DEL DASHBOARD (PANEL DE CONTROL)
+   ========================================================================= */
+
+body.dashboard-body {
+    background-color: #f1f5f9; /* Un gris sutil para resaltar las tarjetas blancas */
+    margin: 0;
+    padding: 40px 0; /* Espaciado arriba y abajo para pantallas grandes */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Contenedor Principal (Tarjeta del Dashboard) */
+.dashboard-wrapper {
+    max-width: 900px; /* Un poco más ancho para que se vea más abundante */
+    width: 90%;
+    margin: 0 auto;
+    padding: 50px; /* Más padding interno para mejor organización */
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(30, 41, 59, 0.08);
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* Encabezados y Textos */
+.welcome-highlight {
+    color: #2D8A5E;
+    font-size: 2.8rem; /* Un poco más grande y llamativo */
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-weight: 800;
+}
+
+.dashboard-subtitle {
+    color: #475569;
+    font-size: 1.15rem;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.dashboard-separator {
+    border: 0;
+    border-top: 1px solid #e2e8f0;
+    margin: 40px 0;
+}
+
+.dashboard-section-title {
+    color: #1E293B;
+    font-size: 1.6rem;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+/* Grid o Rejilla de Tarjetas */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+}
+
+/* Tarjetas Individuales (Cards) */
+.db-card {
+    background: #f8fafc;
+    padding: 30px 24px; /* Más espacio interno */
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    text-align: left;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.db-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.05);
+}
+
+.db-card h4 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    color: #1E293B;
+    font-size: 1.2rem;
+}
+
+.db-card p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #64748B;
+}
+
+/* Estado dinámico del objetivo seleccionado */
+.db-target-value {
+    font-weight: 700;
+    color: #2A5298;
+    font-size: 1.1rem;
+}
+
+/* Botón de Cierre de Sesión */
+.btn-logout-dashboard {
+    display: inline-block;
+    background-color: #2D8A5E;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 14px 36px;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 12px;
+    margin-top: 50px; /* Separado del grid elegantemente */
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-logout-dashboard:hover {
+    background-color: #236B49;
+    box-shadow: 0 6px 20px rgba(45, 138, 94, 0.4);
+    transform: translateY(-1px);
+}
+
+/* =========================================================================
+   MEDIA QUERIES (Adaptabilidad Móvil)
+   ========================================================================= */
+
+@media (max-width: 768px) {
+    body.dashboard-body {
+        padding: 20px 0;
+    }
+
+    .dashboard-wrapper {
+        padding: 35px 20px;
+        margin: 10px auto;
+    }
+
+    .welcome-highlight {
+        font-size: 2.2rem;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .db-card {
+        padding: 24px;
+    }
+}
